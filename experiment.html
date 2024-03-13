@@ -41,7 +41,7 @@ async function saveData(data){
     headers: {"Content-Type": "text/csv"},
     body:    data
     })
-  await new Promise(r => setTimeout(r, 4000));
+  //await new Promise(r => setTimeout(r, 4000));
   document.getElementById("jspsych-content").innerHTML = await response.text();
 }
 
@@ -180,6 +180,7 @@ function shuffle(array) {
    return array;
 }
 
+/* Practice with two options expluded from experiment
 var practice3 = {
     type: jsPsychSurveyMultiChoice,
     name: 'practice3',
@@ -195,7 +196,7 @@ var practice3 = {
         },
     ],
     };
-
+*/
 
 // Comprehension practice
 var practice_comprehension = {
@@ -206,7 +207,6 @@ var practice_comprehension = {
         {
         prompt: 'Where do Joan and Bill know each other from?', 
         name: 'practice_comprehension', 
-        //columns: 4,
         options: shuffle(['From repairing cars together.', 'From middle school.', 'They are siblings.']), 
         required: true,
         },
@@ -219,9 +219,7 @@ var practice_comprehension = {
     stimulus: '<p><span style="font-size:30px;"> Consent </span></p><div style="max-width:800px; word-wrap:break-word;text-align:left;">\
         By clicking on the "I want to participate"-button below, you agree to participate in this study,\
         which is conducted by researchers at the University of Stuttgart. You may withdraw from this experiment\
-        at any time without penalty or loss of benefits, including loss or reduction of payment. If you do withdraw\
-        from the study before the end, please contact the researchers for information on how to collect payment \
-        (swantje.toennis@ling.uni-stuttgart.de). The data collected will be anonymous and confidential. You give permission\
+        at any time. The data collected will be anonymous and confidential. You give permission\
         for your data from this study to be shared with other researchers provided that your anonymity is completely\
         protected. If you have any questions, you may contact the requester through Prolific&apos;s platform or via email\
         (swantje.toennis@ling.uni-stuttgart.de).</div><br>',
@@ -275,6 +273,7 @@ var experiment_trial2 = {
         }
     };
 
+/* Trial with two options - excluded from experiment    
     var experiment_trial3 = {
     type: jsPsychSurveyMultiChoice,
     name: 'task_options',
@@ -292,7 +291,7 @@ var experiment_trial2 = {
         },
     ],
     };
-
+*/
         
 var comprehension = {
     type: jsPsychSurveyMultiChoice,
@@ -370,15 +369,11 @@ var full_timeline = [
   instructions,
   practice1,
   practice2,
-  practice1,
-  practice3,
   practice_comprehension,
   consent,
   start_page,
   experiment_trial1,
   experiment_trial2,
-  experiment_trial1,
-  experiment_trial3,
   comprehension,
   demographics1,
   demographics2,
