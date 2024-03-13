@@ -41,7 +41,7 @@ async function saveData(data){
     headers: {"Content-Type": "text/csv"},
     body:    data
     })
-  //await new Promise(r => setTimeout(r, 4000));
+  await new Promise(r => setTimeout(r, 4000));
   document.getElementById("jspsych-content").innerHTML = await response.text();
 }
 
