@@ -23,20 +23,7 @@
 <!-- Script starts here -->
 <script> // Inside of script comment using //
 
-// this function shuffles an array
-function shuffle(array) {
-   for (var i = array.length - 1; i > 0; i--) { 
-  
-       // Generate random number 
-       var j = Math.floor(Math.random() * (i + 1));
-                  
-       var temp = array[i];
-       array[i] = array[j];
-       array[j] = temp;
-   }
-         
-   return array;
-}
+
 
 /* Send data data to store script: */
 
@@ -57,6 +44,21 @@ var jsPsych = initJsPsych({
     await saveData(jsPsych.data.get().csv());
   }
 });
+
+// this function shuffles an array
+function shuffle(array) {
+   for (var i = array.length - 1; i > 0; i--) { 
+  
+       // Generate random number 
+       var j = Math.floor(Math.random() * (i + 1));
+                  
+       var temp = array[i];
+       array[i] = array[j];
+       array[j] = temp;
+   }
+         
+   return array;
+}
 
 // put the instructions here (needs instructions plugin)  
 var instructions = {
@@ -233,10 +235,11 @@ var comprehension = {
     ],  
 };
 
-/* demographic information
+// demographic information
 var demographics = {
   type: jsPsychSurvey,
   button_label_finish: 'Continue',
+  title: 'Demographics',
   pages: [
     [
       {
@@ -249,7 +252,7 @@ var demographics = {
         name: 'age', 
         textbox_columns: 3, 
         autofocus: true,
-        required: true
+        required: true,
       }, 
       {
         type: 'multi-choice',
@@ -279,15 +282,14 @@ var demographics = {
         type: 'text',
         prompt: "We are interested in any other comments you might have about this study. Please type them in the box:", 
         name: 'comments', 
-        textbox_columns: 10, 
-        textbox_rows: 5,
+        textbox_columns: 40, 
+        textbox_rows: 2,
         required: false
       }
     ]
   ],
 }
 
-*/
         
 /*//demographics part 1
 var demographics1 = {
@@ -357,7 +359,7 @@ var full_timeline = [
   experiment_trial1,
   experiment_trial2,
   comprehension,
-  //demographics,
+  demographics,
   final_screen
 ];
 
