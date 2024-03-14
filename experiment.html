@@ -34,7 +34,7 @@ async function saveData(data){
     headers: {"Content-Type": "text/csv"},
     body:    data
     })
-  //await new Promise(r => setTimeout(r, 4000));
+  await new Promise(r => setTimeout(r, 4000));
   document.getElementById("jspsych-content").innerHTML = await response.text();
 }
 
@@ -46,13 +46,13 @@ var jsPsych = initJsPsych({
 });
 
 
-/* initialise jspsych - Judith's version
+/* initialise jspsych - version with automatic redirect to Prolific doesn't work
 var jsPsych = initJsPsych({
   //show_progress_bar: true,
   //auto_update_progress_bar: false,
   on_finish: async function(){
     await saveData(jsPsych.data.get().csv());
-    window.location = "https://app.prolific.co/submissions/complete?cc=CN8LF6L7"
+    window.location = "https://app.prolific.com/submissions/complete?cc=16A7637A"
   }
 });
 */
@@ -77,8 +77,8 @@ var instructions = {
     type: jsPsychInstructions,
     name: 'instructions',
             pages: ['<p><span style="font-size:30px;"> Welcome to our study! </span></p>\
-            <div style="max-width:800px; word-wrap:break-word;text-align:left;"><p>The goal of this study is to investigate how we understand and interpret English utterances.\
-            We will ask you to read one conversation between two/three persons. We will describe the context in which the conversation takes place. You might see text in brackets.\
+            <div style="max-width:800px; word-wrap:break-word;text-align:left;"><p>The goal of this study is to investigate how we understand English utterances.\
+            We will ask you to read one conversation between some people. We will describe the context in which the conversation takes place. You might see text in brackets.\
             It describes what is happening in the situation besides what is said. After you&apos;ve read the conversation: </p>\
             <p> 1. We will ask you to guess what one of the persons asked next.</p>\
             <p>2. We will then show to you what the other person replied and will ask you to guess again what might have been asked.</p>\
@@ -98,8 +98,8 @@ var practice1 = {
         <p> Joan: How come you had to buy a new car?<br>\
         Bill: Well, you know how my old car was a red Porsche, right? One of the headlights was acting up, and I took it to the shop.<br>\
         Joan: <input type="text" id="test-resp-box" name="practice_elicit" size="80" required = true /> ?</p>\
-       <p><br><b>You noticed that Joan reacted to what Bill said by asking something,\
-        but you couldn&apos;t hear what. What did Joan ask? Please make a guess in the box above!</b></p><br><br><p></p></div>',
+       <p><br><b>Looks like Joan reacted to what Bill said by asking something,\
+        but you couldn&apos;t hear what. What did Joan ask? Please write down your guess in the box.</b></p><br><br><p></p></div>',
   autofocus: 'test-resp-box',
     }; 
 
@@ -114,7 +114,7 @@ var practice2 = {
         Bill: Well, you know how my old car was a red Porsche, right? One of the headlights was acting up, and I took it to the shop.<br>\
         Joan: <input type="text" id="test-resp-box" name="practice_reply" size="80" required = true /> ?</p>\
         <p><br><b>Now you still don&apos;t know what Joan asked, but you heard Bill&apos;s reply:</b>\
-        </p><p>Bill: I took it to "Motor City South" two weeks ago.</p> <p> <b>What was it that Joan asked? Please guess again above!</b> </p> </div>',
+        </p><p>Bill: I took it to "Motor City South" two weeks ago.</p> <p> <b>What was it that Joan asked? Please guess again.</b> </p> </div>',
   autofocus: 'test-resp-box'
     };      
     
@@ -183,8 +183,8 @@ var experiment_trial1 = {
         Doris: Oh, it&apos;s wonderful. It really is. <br>\
         Jay: That means so much to me. <br>\
         Doris: <input type="text" id="test-resp-box" name="q_elicit" size="80" required = true /> ?</p>\
-        <p><br><b>You noticed that Doris reacted to what Jay said by asking something, but you couldn&apos;t hear what.\
-        What did Doris ask? Please make a guess in the box above!</b></p><br><br><p></p></div>',
+        <p><br><b>Looks like Doris reacted to what Jay said by asking something, but you couldn&apos;t hear what.\
+        What did Doris ask? Please write down your guess in the box.</b></p><br><br><p></p></div>',
     autofocus: 'test-resp-box',
     on_finish: function(data) {
                 var item = 'itemx'; // change to item number of respective item
@@ -203,7 +203,7 @@ var experiment_trial2 = {
         Jay: That means so much to me. <br>\
         Doris: <input type="text" id="test-resp-box" name="practice_reply" size="80" required = true /> ?</p>\
         <p><br><b>Now you still don&apos;t know what Doris asked, but you heard Jay&apos;s reply:</b>\
-        </p><p>Jay: You know, I only showed it to my closest friends.</p> <p> <b>What was it that Doris asked? Please guess again above!</b> </p> </div>',
+        </p><p>Jay: You know, I only showed it to my closest friends.</p> <p> <b>What was it that Doris asked? Please guess again.</b> </p> </div>',
     autofocus: 'test-resp-box',
     on_finish: function(data) {
         var item = 'itemx'; // change to item number of respective item
@@ -263,7 +263,6 @@ var demographics = {
         prompt: "How old are you?", 
         name: 'age', 
         textbox_columns: 3, 
-        autofocus: true,
         required: true,
       }, 
       {
