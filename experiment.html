@@ -34,19 +34,19 @@ async function saveData(data){
     headers: {"Content-Type": "text/csv"},
     body:    data
     })
-  await new Promise(r => setTimeout(r, 4000));
+  //await new Promise(r => setTimeout(r, 4000));
   document.getElementById("jspsych-content").innerHTML = await response.text();
 }
 
-/* initialize jsPsych 
+// initialize jsPsych 
 var jsPsych = initJsPsych({
   on_finish: async function(){
     await saveData(jsPsych.data.get().csv());
   }
 });
-*/
 
-// initialise jspsych - Judith's version
+
+/* initialise jspsych - Judith's version
 var jsPsych = initJsPsych({
   //show_progress_bar: true,
   //auto_update_progress_bar: false,
@@ -55,6 +55,7 @@ var jsPsych = initJsPsych({
     window.location = "https://app.prolific.co/submissions/complete?cc=CN8LF6L7"
   }
 });
+*/
 
 // this function shuffles an array
 function shuffle(array) {
