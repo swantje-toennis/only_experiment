@@ -38,10 +38,21 @@ async function saveData(data){
   document.getElementById("jspsych-content").innerHTML = await response.text();
 }
 
-/* initialize jsPsych */
+/* initialize jsPsych 
 var jsPsych = initJsPsych({
   on_finish: async function(){
     await saveData(jsPsych.data.get().csv());
+  }
+});
+*/
+
+// initialise jspsych - Judith's version
+var jsPsych = initJsPsych({
+  //show_progress_bar: true,
+  //auto_update_progress_bar: false,
+  on_finish: async function(){
+    await saveData(jsPsych.data.get().csv());
+    window.location = "https://app.prolific.co/submissions/complete?cc=CN8LF6L7"
   }
 });
 
@@ -65,7 +76,7 @@ var instructions = {
     type: jsPsychInstructions,
     name: 'instructions',
             pages: ['<p><span style="font-size:30px;"> Welcome to our study! </span></p>\
-            <div style="max-width:800px; word-wrap:break-word;text-align:left;"><p>The goal of this study is to investigate how humans understand and interpret English utterances.\
+            <div style="max-width:800px; word-wrap:break-word;text-align:left;"><p>The goal of this study is to investigate how we understand and interpret English utterances.\
             We will ask you to read one conversation between two/three persons. We will describe the context in which the conversation takes place. You might see text in brackets.\
             It describes what is happening in the situation besides what is said. After you&apos;ve read the conversation: </p>\
             <p> 1. We will ask you to guess what one of the persons asked next.</p>\
